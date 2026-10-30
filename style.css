@@ -47,9 +47,8 @@ button:hover  {
   background-color: #e8eade;
 }
 
-a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible, select:focus-visible  {
-  outline: 2px solid #c87563;
-  outline-offset: 4px;
+*:focus {
+  outline: none;
 }
 
 img  {
@@ -1518,3 +1517,4 @@ main  {
     font-size: 22px;
   }
 }
+

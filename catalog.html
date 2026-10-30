@@ -68,24 +68,9 @@
           </a>
         </div>
       </div>
-      <nav class="container categoryNav" aria-label="Категории товаров">
+      <nav class="container categoryNav" aria-label="Основная навигация">
         <a href="catalog.html" aria-current="page">
           Все цветы
-        </a>
-        <a href="catalog.html" aria-current="page">
-          Авторские букеты
-        </a>
-        <a href="catalog.html" aria-current="page">
-          Розы
-        </a>
-        <a href="catalog.html" aria-current="page">
-          Монобукеты
-        </a>
-        <a href="catalog.html" aria-current="page">
-          Цветы в коробке
-        </a>
-        <a href="index.html#gifts">
-          Подарки
         </a>
         <a href="about.html">
           О нас
@@ -137,20 +122,23 @@
             </span>
           </div>
           <div class="catalogToolbar">
-            <div class="filterChips">
-              <button class="activeChip" type="button">
-                Все букеты
-              </button>
-              <button type="button">
-                Розы
-              </button>
-              <button type="button">
-                Монобукеты
-              </button>
-              <button type="button">
-                В коробке
-              </button>
-            </div>
+            <div class="filterChips" role="group" aria-label="Тип букета">
+                <button class="activeChip" type="button" aria-pressed="true">
+                  Все цветы
+                </button>
+                <button type="button" aria-pressed="false">
+                  Авторские букеты
+                </button>
+                <button type="button" aria-pressed="false">
+                  Розы
+                </button>
+                <button type="button" aria-pressed="false">
+                  Монобукеты
+                </button>
+                <button type="button" aria-pressed="false">
+                  Цветы в коробке
+                </button>
+              </div>
             <label>
               Сортировка
               <select aria-label="Сортировка букетов">
