@@ -1,27 +1,33 @@
-//Он будет отквечать за подключение к бд
 
+//будет отвечать за подключение
+const sql = require("mssql/msnodesqlv8");
 
-const mssql = require("mssql");
+const serverName = "DESKTOP-SAUNGMH";
 
-const connection = mssql.connect({
-    host: "localhost",
-    database: "FlowerShopDB"
+const config = {
+    server: serverName,
+    database: "FlowerShopDB",
+    connectionString:
+        `Driver={ODBC Driver 18 for SQL Server};` +
+        `Server=${serverName};` +
+        `Database=FlowerShopDB;` +
+        `Trusted_Connection=Yes;` +
+        `Encrypt=Yes;` +
+        `TrustServerCertificate=Yes;`
+};
 
-});
-//Устанавливаем подключение
-connection.connect(function (err) {
-    if (err) {
-        console.log("Ошибка подключения к базе данных");
-        return;
+// Подключение к базе
+async function connectDB() {
+    try {
+        const pool = await sql.connect(config);
+
+        console.log("Подключение к FlowerShopDB успешно!");
+        return pool;
+
+    } catch (error) {
+        console.error("Ошибка подключения:", error.message);
+        throw error;
     }
-    else {
-        console.log("Подключение к серверу MySQL успешно установлено");
-    }
-});
-connection.end(function (err) {
-    if (err) {
-        return console.log("Ошибка: " + err.message);
-    }
-    console.log("Подключение закрыто");
+}
 
-});
+
