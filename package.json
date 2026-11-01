@@ -1,0 +1,24 @@
+{
+  "name": "exam",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mallaxat/Exam.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Mallaxat/Exam/issues"
+  },
+  "homepage": "https://github.com/Mallaxat/Exam#readme",
+  "dependencies": {
+    "mssql": "^12.7.13"
+  }
+}
