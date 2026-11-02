@@ -147,21 +147,22 @@
             <h2 id="featuredTitle">Выбор флориста</h2>
             <a href="catalog.html">Весь каталог ↗</a>
           </div>
-          <div class="productGrid">
+
+        <!--Тут будет подтягиваться скриптом-->
+          <div class="productGrid" id="flowersdiv">
             <article class="productCard">
               <div class="productImage">
                 <img src="assets/bouquet.svg" alt="Букет «Тёплые объятия» из розовых цветов" width="640" height="680" loading="lazy">
                 <span class="productBadge">Выбор флориста</span>
-                <button class="favoriteButton" type="button" aria-label="Добавить букет Тёплые объятия в избранное">
+                <button class="favoriteButton" type="button" aria-label="Добавить в избранное">
                   ♡</button>
               </div>
-              <!--Тут будет подтягиваться скриптом-->
-              <div class="productInfo">
+              <div class="productInfo" >
                 <div class="productMeta">
                   <span>Авторский букет</span>
                 </div>
                 <h3>
-                  <a href="product.html">Тёплые объятия</a>
+                  <p>Тёплые объятия</p>
                 </h3>
                 <p>Розовые цветы и немного волшебства</p>
                 <div class="productBottom">
@@ -175,6 +176,9 @@
               </div>
             </article>
           </div>
+
+
+
         </section>
         <section class="giftBanner sectionSpace" id="gifts">
           <div>
@@ -257,6 +261,6 @@
         </div>
       </div>
     </footer>
-    <script src="scripts/UI/script.js"></script>
+    <script type="module" src="scripts/UI/script.js"></script>
   </body>
 </html>
