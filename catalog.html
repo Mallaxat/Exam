@@ -74,7 +74,6 @@
           <div class="catalogToolbar">
             <div class="filterChips" role="group" aria-label="Тип букета">
                 <button class="activeChip" type="button" aria-pressed="true">Все цветы</button>
-                <button type="button" aria-pressed="false">Авторские букеты</button>
                 <button type="button" aria-pressed="false">Розы</button>
                 <button type="button" aria-pressed="false">Монобукеты</button>
                 <button type="button" aria-pressed="false">Цветы в коробке</button>
@@ -101,7 +100,7 @@
               <fieldset>
                 <legend>Цветы</legend>
                 <label>
-                  <input type="checkbox" name="flower" value="rose">
+                  <input type="checkbox" name="flower" value="rose" id="test">
                   Розы
                 </label>
                 <label>
@@ -122,28 +121,8 @@
             </aside>
             
             <!-- JS: добавляйте карточки из базы в этот контейнер. article ниже — единственный образец. -->
-            <div class="productGrid" id="productList">
-              <article class="productCard">
-                <div class="productImage">
-                  <img src="assets/bouquet.svg" alt="Букет «Тёплые объятия» из розовых цветов" width="640" height="680" loading="lazy">
-                  <span class="productBadge"> Выбор флориста</span>
-                  <button class="favoriteButton" type="button" aria-label="Добавить в избранное">♡</button>
-                </div>
-                <div class="productInfo">
-                  <div class="productMeta">
-                    <span>Авторский букет</span>
-                  </div>
-                  <h3><a href="product.html"> Тёплые объятия</a></h3>
-                  <p>Розовые цветы и немного волшебства</p>
-                  <div class="productBottom">
-                    <div>
-                      <strong>3 490 ₽</strong>
-                      <span>Доставка от 60 минут</span>
-                    </div>
-                    <button type="button" aria-label="Добавить букет в корзину">+</button>
-                  </div>
-                </div>
-              </article>
+            <div class="productGrid" id="flowersDivCatalog">
+
             </div>
           </div>
         </section>
@@ -188,5 +167,7 @@
         </div>
       </div>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+     <script type="module" src="scripts/UI/catalogScripts.js"></script>
   </body>
 </html>
