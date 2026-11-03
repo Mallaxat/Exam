@@ -9,8 +9,15 @@ var arFilterCategory=[]
 
 $("button[name='Reset']").on("click",Reset);
 
+//Базовый фильтр
+//это массив элементов
+//0-дешевле 1- дороже
+var globalFilter=document.getElementById("aria_sort");
+var select = globalFilter.value;
+
 var listPrices=$("input[name='price']").on("change",function(){
     Filter(this);
+    Sort(select);
 }); 
 //К событию смены чека привязываем функцию
 var listChecked=$("input[name='flower']").on("change", function()
@@ -24,8 +31,30 @@ var listChecked=$("input[name='flower']").on("change", function()
         if(index>=0) arFilterCategory.splice(index,1);
     }
     Filter(this);
+    Sort(select);
     
 });
+globalFilter.addEventListener("change",function()
+{
+    select = globalFilter.value;
+    console.log("select",select);
+    Sort(select);
+});
+
+Sort(select);
+function Sort(sortCheck) {
+    console.log("sortCheck", sortCheck);
+
+    if (Number(sortCheck) > 0) {
+         flowersList.sort((fl1, fl2) =>Number(fl2.Price) - Number(fl1.Price));
+      
+    }
+    else {
+         flowersList.sort((fl1, fl2) =>Number(fl1.Price) - Number(fl2.Price));
+    }
+
+    updateFlowersList(flowersDivCatalog, flowersList);
+}
 
 //Фильтрация по прайсу
 function FilterPrice(array) {
@@ -33,13 +62,11 @@ function FilterPrice(array) {
     let maxPrice = listPrices[1].value === ""? Infinity: Number(listPrices[1].value);
     return array.filter(flower =>Number(flower.Price) >= minPrice &&Number(flower.Price) <= maxPrice);
 }
-
-
 //Фильтрация по категории
 function FilterCategory(obj)
 {
     console.log("сработал filterCategory")
-    arFilterCategory= FindCategory();
+    arFilterCategory = FindCategory();
     console.log("arFilterCategory:",arFilterCategory);
     console.log("---");
 
@@ -48,7 +75,7 @@ function FilterCategory(obj)
 
 function FindCategory()
 {
-    console.log("сработал FindCategory");
+    //console.log("сработал FindCategory");
     let FilterCategory=[];
     for(let i=0;i<listChecked.length;i++)
     {
@@ -60,39 +87,27 @@ function FindCategory()
     return FilterCategory;
 }
 
-function Filter(obj)
-{
+function Filter(obj) {
     //Задача метода, определить фильтры и вызвать необходимые методы
     //Вызывается для каждого чека отдельно
-    let checkCategory=true;
-    let checkPrice=true;
+    let checkPrice = listPrices[0].value !== "" || listPrices[1].value !== "";
 
     //Массив, в котором будут значения поиска
-    let flowersBuffer=[];
- 
-    
+    let flowersBuffer = [];
 
-
-    if(checkCategory)
-    {
-        //console.log("---checkCategory--- ")
-        flowersBuffer=(FilterCategory(obj)).slice();
-        //console.log("flowersList: ",flowersList)
-        //console.log("flowersBuffer: ",flowersBuffer)
-        //Если категории пустые и при этом пустое отображение -стартовые значения
-        if(flowersBuffer.length==0&&arFilterCategory.length==0)
-            flowersBuffer=startFlowerList;  
-        //console.log("FilterCategory вернул",flowersList)
-    }
+    //Сверка по категории
+    flowersBuffer = (FilterCategory(obj)).slice();
+    //Если категории пустые и при этом пустое отображение -стартовые значения
+    if (flowersBuffer.length == 0 && arFilterCategory.length == 0)
+        flowersBuffer = startFlowerList;
 
     if (checkPrice) {
-        console.log("---checkPrice--- ")
-        console.log("flowersBuffer: ", flowersBuffer)
         flowersBuffer = FilterPrice(flowersBuffer);
     }
+    //Проверка если это авторский или моно букет
 
-    flowersList=flowersBuffer;
-    updateFlowersList(flowersDivCatalog,flowersList);
+    flowersList = flowersBuffer;
+    updateFlowersList(flowersDivCatalog, flowersList);
 
 }
 function Reset()
