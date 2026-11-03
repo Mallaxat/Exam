@@ -75,7 +75,19 @@ function filterFlowersByCategory(categories)
     }
     return array;
 }
+function filterFlowersByPrice(price) 
+{
+    let array=[];
+    if(price.length>0)
+    {
+        console.log("price[0]",price[0]);
+        console.log("price[1]",price[1]);
+        //Если не нужно ограничение по верху
+        if(price[1]==0) price[1] = Infinity;
+        array=flowersList.filter(flower=>flower.Price>price[0]&&flower.Price<=price[1])
+    }
+    return array;
+}
 
 
-
-export {fillFlowersList, filterFlowersByCategory,updateFlowersList};
+export {fillFlowersList, filterFlowersByCategory,updateFlowersList,filterFlowersByPrice};

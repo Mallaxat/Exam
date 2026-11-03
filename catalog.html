@@ -92,15 +92,15 @@
               <fieldset>
                 <legend>Стоимость, ₽</legend>
                 <div class="priceRange">
-                  <input type="number" min="0" placeholder="От 1 000" aria-label="Минимальная цена">
+                  <input type="number" min="0" placeholder="От 1 000" name="price">
                   <span>—</span>
-                  <input type="number" min="0" placeholder="До 15 000" aria-label="Максимальная цена">
+                  <input type="number" min="0" placeholder="До 15 000" name="price">
                 </div>
               </fieldset>
               <fieldset>
                 <legend>Цветы</legend>
                 <label>
-                  <input type="checkbox" name="flower" value="rose" id="test">
+                  <input type="checkbox" name="flower" value="rose">
                   Розы
                 </label>
                 <label>
@@ -116,8 +116,7 @@
                   Тюльпаны
                 </label>
               </fieldset>
-              
-              <button class="resetButton" type="button">Сбросить фильтры</button>
+              <button class="resetButton" type="button" name="Reset">Сбросить фильтры</button>
             </aside>
             
             <!-- JS: добавляйте карточки из базы в этот контейнер. article ниже — единственный образец. -->

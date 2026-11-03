@@ -45,5 +45,14 @@
     "Care": "Хранить вдали от отопительных приборов, менять воду раз в два дня.",
     "Price": 3100,
     "Category": ["rose", "chrysanthemum"]
+  },
+    {
+    "Id": 6,
+    "Name": "Тюльпан",
+    "ImagePath": "assets/flowers/flower1.jpg",
+    "Description": "Яркое сочетание тюльпанов.",
+    "Care": "Ежедневно менять воду и подрезать стебли.",
+    "Price": 1000,
+    "Category": ["tulip"]
   }
 ]
