@@ -114,4 +114,32 @@ function FillFlowersAdd(element, array) {
     element.innerHTML = textHTML;
 }
 
-export {fillFlowersList, GetFlowers,updateFlowersList,GetFlowersType,FillFlowersType,FillFlowersAdd};
+function FillTextOrder(element,array)
+{
+    element.innerHTML="";
+    let textHTML = "";
+    let flowers = [];
+    // Убираем повторения 
+    for (let i = 0; i < array.length; i++) {
+        let flower = flowers.find(fl => fl.Id == array[i].Id);
+
+        if (flower) flower.quantity++;
+        else flowers.push({ ...array[i], quantity: 1 });
+       
+    }
+    for(let i=0;i<flowers.length;i++)
+    {
+        textHTML+=`<article class="divTextOrder">
+                <div>
+                  <span>${flowers[i].Name} · ${flowers[i].quantity} шт.</span>
+                </div>
+                <div>
+                  <span>${flowers[i].Price} ₽</span>
+                </div>
+              </article>`;
+    }
+    element.innerHTML=textHTML;
+}
+
+
+export {fillFlowersList, GetFlowers,updateFlowersList,GetFlowersType,FillFlowersType,FillFlowersAdd,FillTextOrder};

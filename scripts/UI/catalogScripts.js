@@ -5,8 +5,6 @@ var flowersDivCatalog = document.getElementById("flowersDivCatalog");
 var startFlowerList=GetFlowers();
 var flowersList = startFlowerList;
 
-
-
 $("button[name='Reset']").on("click",Reset);
 
 //Фильтр(Дороже/Дешевле)
@@ -168,3 +166,4 @@ function AddOrder(event) {
     //Если в корзине что-то было
     flowerOrder.push(flowersList.find(fl => Number(fl.Id) == Number(button.dataset.id)));
 }
+

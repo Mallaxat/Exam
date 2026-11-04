@@ -65,63 +65,49 @@
           <p>Почти готово к маленькому празднику.</p>
         </div>
         <section class="cartLayout" >
-         
-          <div id="OrderList">
-            <article class="cartItem"  >
-              <a href="product.html">
-                <img src="assets/bouquet.svg" alt="Тёплые объятия" width="120" height="140">
-              </a>
-              <div>
-                <h2>Тёплые объятия</h2>
-                <p>Авторский букет</p>
-                <div class="quantityControl">
-                  <button type="button" aria-label="Уменьшить количество">−</button>
-                  <span>1</span>
-                  <button type="button" aria-label="Увеличить количество">+</button>
-                </div>
-              </div>
-              <div>
-                <strong>3 490 ₽ </strong>
-                <button class="resetButton" type="button">Удалить</button>
-              </div>
-            </article>
-            <article class="cartItem" >
-              <a href="product.html">
-                <img src="assets/bouquet.svg" alt="Тёплые объятия" width="120" height="140">
-              </a>
-              <div>
-                <h2>Тёплые объятия</h2>
-                <p>Авторский букет</p>
-                <div class="quantityControl">
-                  <button type="button" aria-label="Уменьшить количество">−</button>
-                  <span>1</span>
-                  <button type="button" aria-label="Увеличить количество">+</button>
-                </div>
-              </div>
-              <div>
-                <strong>3 490 ₽ </strong>
-                <button class="resetButton" type="button">Удалить</button>
-            </article>
-
-            <a class="textLink" href="catalog.html">← Продолжить выбирать</a>
-          </div>
+           <a class="textLink" href="catalog.html">← Продолжить выбирать</a>
+          <div id="OrderList"></div>
+        
           <aside class="orderSummary">
             <h2>Ваш заказ</h2>
-            <div>
-              <span>Букет · 1 шт.</span>
-              <span>3 490 ₽</span>
+            <div id="divTextOrder">
+              <article class="divTextOrder">
+                <div>
+                  <span>Букет · 1 шт.</span>
+                </div>
+                <div>
+                  <span>3 490 ₽</span>
+                </div>
+              </article>
             </div>
+
             <div>
               <span>Доставка</span>
               <span>По адресу</span>
             </div>
             <div class="orderTotal">
               <strong>Товары </strong>
-              <strong>3 490 ₽</strong>
+              <strong id="resultPrice">3 490 ₽</strong>
             </div>
             <p>Стоимость доставки будет рассчитана при оформлении.</p>
-            <button class="primaryButton" type="button">Оформить заказ ↗</button>
-            <p>Демонстрационная корзина, оформление пока не подключено.</p>
+
+            <!-- Отправка формы -->
+            <form class="checkoutForm" id="orderForm" method="post">
+              <label>Имя клиента
+                <input type="text" name="clientName" autocomplete="name" placeholder="Ваше имя" required>
+              </label>
+              <label>Номер телефона
+                <input type="tel" name="phone" autocomplete="tel" placeholder="+7 (___) ___-__-__" required>
+              </label>
+              <label>Адрес доставки
+                <input type="text" name="city" autocomplete="address-line1" placeholder="Город" required>
+                <input type="text" name="street"autocomplete="address-line1"  placeholder="Улица" required>            
+                <input type="text" name="house" placeholder="Дом" required>
+                <input type="number" name="apartment" placeholder="Квартира" required>
+              </label>
+              <button id="btCompleteOrder" class="primaryButton" type="submit"> Оформить заказ ↗</button>
+            </form>
+            <p>Демонстрационная корзина, оформление пока не подключено.</p> 
           </aside>
         </section>
       </div>
@@ -165,6 +151,7 @@
       </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script type="module" src="scripts/UI/cartScript.js"></script>
   </body>
 </html>
