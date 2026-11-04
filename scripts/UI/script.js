@@ -20,7 +20,6 @@ function fillFlowersList(flowers) {
         textHTML += "<article class='productCard'>";
         textHTML += "<div class='productImage'>";
         textHTML += `<img src="${flowersList[i].ImagePath}" width="640" height="680" loading="lazy">`
-        textHTML += "<span class='productBadge'>Выбор флориста</span>";
         textHTML += "</div>";
         textHTML += "<div class='productInfo'>";
         textHTML += "<div class='productMeta'>";
@@ -49,7 +48,6 @@ function updateFlowersList(element,array) {
         textHTML += "<article class='productCard'>";
         textHTML += "<div class='productImage'>";
         textHTML += `<img src="${array[i].ImagePath}" width="640" height="680" loading="lazy">`
-        textHTML += "<span class='productBadge'>Выбор флориста</span>";
         textHTML += "</div>";
         textHTML += "<div class='productInfo'>";
         textHTML += "<div class='productMeta'>";
