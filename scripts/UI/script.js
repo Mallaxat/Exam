@@ -81,4 +81,4 @@ function FillFlowersType(element) {
     element.innerHTML = textHTML;
 }
 
-export {fillFlowersList, GetFlowers,updateFlowersList,GetFlowersType};
+export {fillFlowersList, GetFlowers,updateFlowersList,GetFlowersType,FillFlowersType};

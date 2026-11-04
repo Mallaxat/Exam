@@ -1,9 +1,11 @@
-import {fillFlowersList, GetFlowers,updateFlowersList,GetFlowersType} from './script.js';
+import {fillFlowersList, GetFlowers,updateFlowersList,FillFlowersType} from './script.js';
 
 var flowersDivCatalog = document.getElementById("flowersDivCatalog");
 //тут объекты
 var startFlowerList=GetFlowers();
 var flowersList = startFlowerList;
+
+
 
 $("button[name='Reset']").on("click",Reset);
 
@@ -24,6 +26,7 @@ var listPrices=$("input[name='price']").on("change",function(){
     Filter(this);
     Sort(select);
 }); 
+FillFlowersType(document.getElementById("flowerType"));
 //Фильтр Категория
 //К событию смены чека привязываем функцию
 var listChecked = $("input[name='flower']").on("change", function () {
@@ -47,8 +50,9 @@ $("#DivSelect>button").on("click", function () {
 
 //Базовый запуск
 fillFlowersList(flowersDivCatalog);
-
 Sort(select);
+
+
 function Sort(sortCheck) {
 
     if (Number(sortCheck) > 0) {
