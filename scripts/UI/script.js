@@ -21,7 +21,6 @@ function fillFlowersList(flowers) {
         textHTML += "<div class='productImage'>";
         textHTML += `<img src="${flowersList[i].ImagePath}" width="640" height="680" loading="lazy">`
         textHTML += "<span class='productBadge'>Выбор флориста</span>";
-        textHTML += "<button class='favoriteButton' type='button' aria-label='Добавить в избранное'>♡</button>";
         textHTML += "</div>";
         textHTML += "<div class='productInfo'>";
         textHTML += "<div class='productMeta'>";
@@ -51,7 +50,6 @@ function updateFlowersList(element,array) {
         textHTML += "<div class='productImage'>";
         textHTML += `<img src="${array[i].ImagePath}" width="640" height="680" loading="lazy">`
         textHTML += "<span class='productBadge'>Выбор флориста</span>";
-        textHTML += "<button class='favoriteButton' type='button' aria-label='Добавить в избранное'>♡</button>";
         textHTML += "</div>";
         textHTML += "<div class='productInfo'>";
         textHTML += "<div class='productMeta'>";
@@ -81,4 +79,39 @@ function FillFlowersType(element) {
     element.innerHTML = textHTML;
 }
 
-export {fillFlowersList, GetFlowers,updateFlowersList,GetFlowersType,FillFlowersType};
+function FillFlowersAdd(element, array) {
+    let textHTML = "";
+    let flowers = [];
+
+    // Убираем повторения 
+    for (let i = 0; i < array.length; i++) {
+        let flower = flowers.find(fl => fl.Id == array[i].Id);
+
+        if (flower) flower.quantity++;
+        else flowers.push({ ...array[i], quantity: 1 });
+       
+    }
+    for (let i = 0; i < flowers.length; i++) {
+        textHTML += `
+            <article class="cartItem" data-id="${flowers[i].Id}">
+                 <img src="${flowers[i].ImagePath}" width="120" height="140">
+            <div>
+
+                    <h2>${flowers[i].Name}</h2>
+                    <p>${flowers[i].Type == 0 ? "Авторский букет" : "Монобукет"}</p>
+                    <div class="quantityControl">
+                        <button type="button" data-id="minus">−</button>
+                        <span>${flowers[i].quantity}</span>
+                        <button type="button" data-id="plus">+</button>
+                    </div>
+                </div>
+                <div>
+                    <strong>${flowers[i].Price} ₽</strong>
+                    <button class="resetButton" type="button" onclick="Delete()">Удалить</button>
+                </div>
+            </article>`;
+    }
+    element.innerHTML = textHTML;
+}
+
+export {fillFlowersList, GetFlowers,updateFlowersList,GetFlowersType,FillFlowersType,FillFlowersAdd};

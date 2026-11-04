@@ -155,11 +155,16 @@ var cartButton=$("button.addOrder").on("click",AddOrder);
 var flowerOrder=[];
 window.addEventListener("pagehide", function() {
     console.log("pagehide");
+    //Получаем корзина которая уже есть
+    let oldOrder = JSON.parse(localStorage.getItem("flowerOrder")) || [];
+    // Добавляем в неё новые товары
+    flowerOrder.push(...oldOrder);
     localStorage.setItem("flowerOrder", JSON.stringify(flowerOrder));
+
 });
 function AddOrder(event) {
-    console.log("AddOrder");
     let button = event.target;
+    //поулчаем старые заказы
+    //Если в корзине что-то было
     flowerOrder.push(flowersList.find(fl => Number(fl.Id) == Number(button.dataset.id)));
-    console.log("flowerOrder ", flowerOrder);
 }
