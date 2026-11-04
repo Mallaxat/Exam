@@ -150,3 +150,24 @@ function Reset()
 
     updateFlowersList(flowersDivCatalog,flowersList);
 }
+
+var cartButton=$("button.addOrder").on("click",AddOrder);
+var flowerOrder=[];
+window.addEventListener("pagehide", function() {
+    localStorage.setItem("flowerOrder", JSON.stringify(flowerOrder));
+});
+function AddOrder(event) {
+    console.log("AddOrder");
+    let button = event.target;
+    if (button.classList.contains("activeChip")) {
+        button.classList.remove("activeChip");
+    }
+    else {
+        button.classList.add("activeChip");
+    }
+
+    //console.log("button ",button);
+    //console.log("button.dataset id",button.dataset.id);
+    flowerOrder.push(flowersList.find(fl => Number(fl.Id) == Number(button.dataset.id)));
+    console.log("flowerOrder ", flowerOrder);
+}

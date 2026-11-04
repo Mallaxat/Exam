@@ -4,189 +4,128 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Корзина. Цветочная мастерская Лепесток в Санкт-Петербурге.">
-    <title>
-      Корзина — Лепесток
-    </title>
+    <title>Корзина — Лепесток</title>
     <link rel="icon" href="assets/flower.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css">
   </head>
   <body id="pageTop">
     <div class="topBar">
       <div class="container">
-        <span>
-          Маленький повод для большой радости
-        </span>
-        <span>
-          Фото букета перед доставкой
-          <b>
-            ✳
-          </b>
-          Открытка в подарок
-        </span>
+        <span>Маленький повод для большой радости </span>
+        <span>Фото букета перед доставкой
+          <b>✳</b>
+          Открытка в подарок</span>
       </div>
     </div>
     <header>
       <div class="container headerMain">
         <a class="logo" href="index.html" aria-label="Лепесток, главная">
           ✳ лепесток
-          <span>
-            цветы с нежностью
-          </span>
+          <span>цветы с нежностью</span>
         </a>
         <div class="deliveryLocation">
-          <span>
-            Доставим в
-          </span>
-          <button type="button">
-            Санкт-Петербург ⌄
-          </button>
+          <span>Доставим в</span>
+          <button type="button">Санкт-Петербург ⌄</button>
         </div>
         <label class="searchField">
-          <span aria-hidden="true">
-            ⌕
-          </span>
+          <span aria-hidden="true"> ⌕</span>
           <input type="search" placeholder="Найти тот самый букет" aria-label="Поиск букетов">
         </label>
         <div class="headerActions">
-          <button type="button" aria-label="Избранное">
-            ♡
-            <span>
-              Избранное
-            </span>
+          <button type="button" aria-label="Избранное">♡
+            <span>Избранное</span>
           </button>
           <button type="button" aria-label="Войти в профиль">
             ♙
-            <span>
-              Войти
-            </span>
+            <span>Войти</span>
           </button>
           <a href="cart.html" aria-current="page" aria-label="Корзина, 0 товаров">
             ♧
-            <span>
-              Корзина · 0
-            </span>
+            <span>Корзина · 0</span>
           </a>
         </div>
       </div>
       <nav class="container categoryNav" aria-label="Основная навигация">
-        <a href="catalog.html">
-          Все цветы
-        </a>
-        <a href="about.html">
-          О нас
-        </a>
-        <a href="delivery.html">
-          Доставка
-        </a>
-        <a href="contacts.html">
-          Контакты
-        </a>
+        <a href="catalog.html">Все цветы</a>
+        <a href="about.html">О нас</a>
+        <a href="delivery.html">Доставка</a>
+        <a href="contacts.html">Контакты</a>
       </nav>
     </header>
     <main>
       <div class="container">
         <nav class="breadcrumbs" aria-label="Хлебные крошки">
-          <a href="index.html">
-            Главная
-          </a>
-          <span aria-hidden="true">
-            /
-          </span>
-          <span aria-current="page">
-            Корзина
-          </span>
+          <a href="index.html">Главная</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">Корзина</span>
         </nav>
         <div class="pageIntro">
-          <span class="eyebrow">
-            ЦВЕТОЧНАЯ МАСТЕРСКАЯ
-          </span>
-          <h1>
-            Корзина
-          </h1>
-          <p>
-            Почти готово к маленькому празднику.
-          </p>
+          <span class="eyebrow">ЦВЕТОЧНАЯ МАСТЕРСКАЯ</span>
+          <h1>Корзина</h1>
+          <p>Почти готово к маленькому празднику.</p>
         </div>
         <section class="cartLayout" aria-label="Пример заполненной корзины">
-          <div>
-            <p class="muted">
-              Пример товара в корзине. Управление количеством будет подключено через JS.
-            </p>
-            <article class="cartItem">
+         
+          <div id="OrderList">
+            <article class="cartItem" >
               <a href="product.html">
                 <img src="assets/bouquet.svg" alt="Тёплые объятия" width="120" height="140">
               </a>
               <div>
-                <h2>
-                  <a href="product.html">
-                    Тёплые объятия
-                  </a>
-                </h2>
-                <p>
-                  Авторский букет
-                </p>
+                <h2>Тёплые объятия</h2>
+                <p>Авторский букет</p>
                 <div class="quantityControl">
-                  <button type="button" aria-label="Уменьшить количество">
-                    −
-                  </button>
-                  <span>
-                    1
-                  </span>
-                  <button type="button" aria-label="Увеличить количество">
-                    +
-                  </button>
+                  <button type="button" aria-label="Уменьшить количество">−</button>
+                  <span>1</span>
+                  <button type="button" aria-label="Увеличить количество">+</button>
                 </div>
               </div>
               <div>
-                <strong>
-                  3 490 ₽
-                </strong>
-                <button class="resetButton" type="button">
-                  Удалить
-                </button>
+                <strong>3 490 ₽ </strong>
+                <button class="resetButton" type="button">Удалить</button>
               </div>
             </article>
-            <a class="textLink" href="catalog.html">
-              ← Продолжить выбирать
-            </a>
+                      <div id="OrderList">
+            <article class="cartItem" >
+              <a href="product.html">
+                <img src="assets/bouquet.svg" alt="Тёплые объятия" width="120" height="140">
+              </a>
+              <div>
+                <h2>Тёплые объятия</h2>
+                <p>Авторский букет</p>
+                <div class="quantityControl">
+                  <button type="button" aria-label="Уменьшить количество">−</button>
+                  <span>1</span>
+                  <button type="button" aria-label="Увеличить количество">+</button>
+                </div>
+              </div>
+              <div>
+                <strong>3 490 ₽ </strong>
+                <button class="resetButton" type="button">Удалить</button>
+              </div>
+            </article>
+            
+
+
+            <a class="textLink" href="catalog.html">← Продолжить выбирать</a>
           </div>
           <aside class="orderSummary">
-            <h2>
-              Ваш заказ
-            </h2>
+            <h2>Ваш заказ</h2>
             <div>
-              <span>
-                Букет · 1 шт.
-              </span>
-              <span>
-                3 490 ₽
-              </span>
+              <span>Букет · 1 шт.</span>
+              <span>3 490 ₽</span>
             </div>
             <div>
-              <span>
-                Доставка
-              </span>
-              <span>
-                По адресу
-              </span>
+              <span>Доставка</span>
+              <span>По адресу</span>
             </div>
             <div class="orderTotal">
-              <strong>
-                Товары
-              </strong>
-              <strong>
-                3 490 ₽
-              </strong>
+              <strong>Товары </strong>
+              <strong>3 490 ₽</strong>
             </div>
-            <p>
-              Стоимость доставки будет рассчитана при оформлении.
-            </p>
-            <button class="primaryButton" type="button">
-              Оформить заказ ↗
-            </button>
-            <p>
-              Демонстрационная корзина, оформление пока не подключено.
-            </p>
+            <p>Стоимость доставки будет рассчитана при оформлении.</p>
+            <button class="primaryButton" type="button">Оформить заказ ↗</button>
+            <p>Демонстрационная корзина, оформление пока не подключено.</p>
           </aside>
         </section>
       </div>
@@ -195,79 +134,41 @@
       <div class="container">
         <div class="footerGrid">
           <div>
-            <a class="logo" href="index.html">
-              ✳ лепесток
-              <span>
-                цветы с нежностью
-              </span>
+            <a class="logo" href="index.html">✳ лепесток
+              <span>цветы с нежностью</span>
             </a>
-            <p>
-              Для ваших самых
+            <p>Для ваших самых
               <br>
-              нежных «просто так».
-            </p>
+              нежных «просто так».</p>
           </div>
           <nav aria-label="Каталог в подвале">
-            <h3>
-              Выбрать цветы
-            </h3>
-            <a href="catalog.html">
-              Все букеты
-            </a>
-            <a href="catalog.html">
-              Розы и монобукеты
-            </a>
-            <a href="catalog.html">
-              Цветы в коробке
-            </a>
-            <a href="index.html#gifts">
-              Подарки к букету
-            </a>
+            <h3>Выбрать цветы</h3>
+            <a href="catalog.html">Все букеты</a>
+            <a href="catalog.html">Розы и монобукеты</a>
+            <a href="catalog.html">Цветы в коробке</a>
+            <a href="index.html#gifts">Подарки к букету</a>
           </nav>
           <nav aria-label="Информация">
-            <h3>
-              О мастерской
-            </h3>
-            <a href="about.html">
-              Наша история
-            </a>
-            <a href="delivery.html">
-              Доставка и оплата
-            </a>
-            <a href="contacts.html">
-              Контакты
-            </a>
-            <a href="delivery.html#faqTitle">
-              Вопросы и ответы
-            </a>
+            <h3>О мастерской</h3>
+            <a href="about.html">Наша история</a>
+            <a href="delivery.html">Доставка и оплата</a>
+            <a href="contacts.html">Контакты </a>
+            <a href="delivery.html#faqTitle">Вопросы и ответы</a>
           </nav>
           <div>
-            <h3>
-              Мы рядом
-            </h3>
-            <p>
-              Санкт-Петербург
-            </p>
-            <p>
-              Каждый день · 09:00–21:00
-            </p>
-            <span class="footerNote">
-              Учебный проект цветочной мастерской
-            </span>
+            <h3>Мы рядом</h3>
+            <p>Санкт-Петербург</p>
+            <p> Каждый день · 09:00–21:00</p>
           </div>
         </div>
         <div class="footerBottom">
-          <span>
-            © 2026 Лепесток
-          </span>
-          <span>
-            Сделано с вниманием к деталям ♡
-          </span>
-          <a href="#pageTop">
-            Наверх ↑
-          </a>
+          <span> © 2026 Лепесток</span>
+          <span> Сделано с вниманием к деталям ♡ </span>
+          <a href="#pageTop"> Наверх ↑</a>
         </div>
       </div>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="scripts/UI/cartScript.js"></script>
   </body>
 </html>

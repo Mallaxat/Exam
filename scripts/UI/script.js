@@ -32,7 +32,7 @@ function fillFlowersList(flowers) {
         textHTML += "<div>";
         textHTML += `<strong>${flowersList[i].Price} ₽</strong>`;
         textHTML += "<span>Доставка от 60 минут</span></div>"
-        textHTML += "<button type='button' aria-label='Добавить в корзину'>+</button>";
+        textHTML += `<button type='button' class='addOrder' data-id=${flowersList[i].Id}>+</button>`;
         textHTML += "</div></div></article>";
 
         flowers.innerHTML += textHTML;
@@ -62,7 +62,7 @@ function updateFlowersList(element,array) {
         textHTML += "<div>";
         textHTML += `<strong>${array[i].Price} ₽</strong>`;
         textHTML += "<span>Доставка от 60 минут</span></div>"
-        textHTML += "<button type='button' aria-label='Добавить в корзину'>+</button>";
+        textHTML += `<button type='button' class='addOrder' data-id=${flowersList[i].Id}>+</button>`;
         textHTML += "</div></div></article>";
 
         element.innerHTML += textHTML;
