@@ -1,4 +1,39 @@
 import {FillFlowersAdd,FillTextOrder} from './script.js';
+import addresses from '../../data/addresses.json' with { type: 'json' };
+
+// Списки адресов 
+const citySelect = document.querySelector("select[name='city']");
+const streetSelect = document.querySelector("select[name='street']");
+const houseSelect = document.querySelector("select[name='house']");
+
+for (const city of Object.keys(addresses)) {
+    citySelect.add(new Option(city, city));
+}
+
+citySelect.addEventListener("change", function () {
+    streetSelect.options.length = 1;
+    houseSelect.options.length = 1;
+    streetSelect.disabled = !citySelect.value;
+    houseSelect.disabled = true;
+
+    if (!citySelect.value) return;
+
+    for (const street of Object.keys(addresses[citySelect.value])) {
+        streetSelect.add(new Option(street, street));
+    }
+});
+
+streetSelect.addEventListener("change", function () {
+    houseSelect.options.length = 1;
+    houseSelect.disabled = !streetSelect.value;
+
+    if (!streetSelect.value) return;
+
+    for (const house of addresses[citySelect.value][streetSelect.value]) {
+        houseSelect.add(new Option(house, house));
+    }
+});
+
 //Маска ввода телефона
 $("input[name='phone']").mask("+7(000)000-00-00");
 

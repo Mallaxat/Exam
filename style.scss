@@ -1381,7 +1381,7 @@ main  {
 
 .cartLayout  {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 40px;
   align-items: start;
 }
@@ -1537,6 +1537,7 @@ main  {
 }
 
 .checkoutForm input,
+.checkoutForm select,
 .checkoutForm textarea {
   width: 100%;
   min-width: 0;
@@ -1554,4 +1555,29 @@ main  {
 
 .checkoutForm .primaryButton {
   margin-top: 4px;
+}
+
+/* Товары в итогах заказа располагаются один под другим. */
+.orderSummary > #divTextOrder {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+#divTextOrder article {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+#divTextOrder article > div:first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+#divTextOrder article > div:last-child {
+  flex-shrink: 0;
 }
