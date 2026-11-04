@@ -1,12 +1,16 @@
 //Достаем цветы из json файла
 //Тут уже массив объектов, с ними уже можно работать
 import flowersList from '../../data/flowers.json' with { type: 'json' };
+import flowersType from '../../data/flowersType.json' with { type: 'json' };
 
 function GetFlowers()
 {
     return flowersList;
 }
-
+function GetFlowersType()
+{
+    return flowersType;
+}
 
 //Функция, для заполнения массива цветов из json файла
 function fillFlowersList(flowers) {
@@ -67,5 +71,14 @@ function updateFlowersList(element,array) {
     return flowersList;
 }
 
+function FillFlowersType(element) {
+    let textHTML = "<legend>Цветы</legend>";
 
-export {fillFlowersList, GetFlowers,updateFlowersList,};
+    //из массива берем ключ и значение
+    for (let [key, value] of Object.entries(flowersType[0])) {
+        textHTML += `<label><input type="checkbox" name="flower" value="${key}">${value}</label>`;
+    }
+    element.innerHTML = textHTML;
+}
+
+export {fillFlowersList, GetFlowers,updateFlowersList,GetFlowersType};

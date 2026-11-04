@@ -72,17 +72,15 @@
             <span class="muted">Коллекция «Нежные чувства»</span>
           </div>
           <div class="catalogToolbar">
-            <div class="filterChips" role="group" aria-label="Тип букета">
-                <button class="activeChip" type="button" aria-pressed="true">Все цветы</button>
-                <button type="button" aria-pressed="false">Розы</button>
-                <button type="button" aria-pressed="false">Монобукеты</button>
-                <button type="button" aria-pressed="false">Цветы в коробке</button>
+            <div class="filterChips" role="group" id="DivSelect">
+                <button class="activeChip" type="button" value="0">Все цветы</button>
+                <button type="button"  value="1">Авторские букеты</button>
+                <button type="button"  value="2">Монобукеты</button>
               </div>
             <label>Сортировка
-              <select aria-label="Сортировка букетов">
-                <option>Популярные</option>
-                <option>Сначала дешевле</option>
-                <option>Сначала дороже</option>
+              <select id="aria_sort">
+                <option value="0">Сначала дешевле</option>
+                <option value="1">Сначала дороже</option>
               </select>
             </label>
           </div>
@@ -97,7 +95,7 @@
                   <input type="number" min="0" placeholder="До 15 000" name="price">
                 </div>
               </fieldset>
-              <fieldset>
+              <fieldset id="flowerType">
                 <legend>Цветы</legend>
                 <label>
                   <input type="checkbox" name="flower" value="rose">
@@ -119,7 +117,7 @@
               <button class="resetButton" type="button" name="Reset">Сбросить фильтры</button>
             </aside>
             
-            <!-- JS: добавляйте карточки из базы в этот контейнер. article ниже — единственный образец. -->
+            
             <div class="productGrid" id="flowersDivCatalog">
 
             </div>

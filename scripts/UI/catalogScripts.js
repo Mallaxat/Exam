@@ -1,45 +1,53 @@
-import {fillFlowersList, filterFlowersByCategory,updateFlowersList,filterFlowersByPrice} from './script.js';
+import {fillFlowersList, GetFlowers,updateFlowersList,GetFlowersType} from './script.js';
 
 var flowersDivCatalog = document.getElementById("flowersDivCatalog");
 //тут объекты
-var startFlowerList=fillFlowersList(flowersDivCatalog);
+var startFlowerList=GetFlowers();
 var flowersList = startFlowerList;
-//массив условий типа цветов .get() сделает массивом обычным
-var arFilterCategory=[]
 
 $("button[name='Reset']").on("click",Reset);
 
-//Базовый фильтр
+//Фильтр(Дороже/Дешевле)
 //это массив элементов
 //0-дешевле 1- дороже
 var globalFilter=document.getElementById("aria_sort");
 var select = globalFilter.value;
-
-var listPrices=$("input[name='price']").on("change",function(){
-    Filter(this);
-    Sort(select);
-}); 
-//К событию смены чека привязываем функцию
-var listChecked=$("input[name='flower']").on("change", function()
-{
-    console.log("изменен",this.value)
-    //Передаем текущий объект в фильтр
-    //Если чек был снят, то убираем его из категорий
-    if(this.checked==false && arFilterCategory.includes(this.value))
-    {
-        let index=arFilterCategory.indexOf(this.value);
-        if(index>=0) arFilterCategory.splice(index,1);
-    }
-    Filter(this);
-    Sort(select);
-    
-});
 globalFilter.addEventListener("change",function()
 {
     select = globalFilter.value;
     console.log("select",select);
     Sort(select);
 });
+
+//Фильтр Цена
+
+var listPrices=$("input[name='price']").on("change",function(){
+    Filter(this);
+    Sort(select);
+}); 
+//Фильтр Категория
+//К событию смены чека привязываем функцию
+var listChecked = $("input[name='flower']").on("change", function () {
+
+    if (this.checked == false) flowersList = startFlowerList;
+    //Передаем текущий объект в фильтр
+    Filter(this);
+    Sort(select);
+});
+
+
+//Список кнопок
+//Какая кнопка выбрана
+var selectButton=$("#DivSelect>button")[0];
+$("#DivSelect>button").on("click", function () {
+    $("#DivSelect>button").removeClass("activeChip");
+    $(this).addClass("activeChip");
+    selectButton = this;
+    Filter();
+});
+
+//Базовый запуск
+fillFlowersList(flowersDivCatalog);
 
 Sort(select);
 function Sort(sortCheck) {
@@ -63,19 +71,15 @@ function FilterPrice(array) {
     return array.filter(flower =>Number(flower.Price) >= minPrice &&Number(flower.Price) <= maxPrice);
 }
 //Фильтрация по категории
-function FilterCategory(obj)
-{
-    console.log("сработал filterCategory")
-    arFilterCategory = FindCategory();
-    console.log("arFilterCategory:",arFilterCategory);
-    console.log("---");
+function FilterCategory(array, callback) {
 
-    return filterFlowersByCategory(arFilterCategory);
+    let param = callback(); //[rose,tulp]
+    if (param.length == 0) return array;
+    return array.filter(fl => param.some(param => fl.Category.includes(param)));
 }
 
 function FindCategory()
 {
-    //console.log("сработал FindCategory");
     let FilterCategory=[];
     for(let i=0;i<listChecked.length;i++)
     {
@@ -87,26 +91,54 @@ function FindCategory()
     return FilterCategory;
 }
 
+function FilterButton(array) {
+
+    let flowersBuffer = array;
+    switch (Number(selectButton.value)) {
+        default:
+            console.log("Default", selectButton.value);
+            flowersBuffer = array;
+            break;
+        case 1:
+            console.log("----");
+            console.log("case 1", selectButton.value);
+            flowersBuffer = array.filter(fl => Number(fl.Type) == 0);
+            console.log("case 1 // array", array);
+            console.log("case 1 // flowersBuffer", flowersBuffer);
+            break;
+        case 2:
+            console.log("----");
+            console.log("case 2", selectButton.value);
+            flowersBuffer = array.filter(fl => Number(fl.Type) == 1);
+            console.log("case 1 // array", array);
+            console.log("case 1 // flowersBuffer", flowersBuffer);
+            break;
+    }
+    return flowersBuffer;
+
+}
+
 function Filter(obj) {
     //Задача метода, определить фильтры и вызвать необходимые методы
     //Вызывается для каждого чека отдельно
     let checkPrice = listPrices[0].value !== "" || listPrices[1].value !== "";
-
+    let checkButton = (selectButton.value > 0) ? true : false;
     //Массив, в котором будут значения поиска
-    let flowersBuffer = [];
+    let flowersBuffer = startFlowerList;
 
-    //Сверка по категории
-    flowersBuffer = (FilterCategory(obj)).slice();
-    //Если категории пустые и при этом пустое отображение -стартовые значения
-    if (flowersBuffer.length == 0 && arFilterCategory.length == 0)
-        flowersBuffer = startFlowerList;
-
-    if (checkPrice) {
-        flowersBuffer = FilterPrice(flowersBuffer);
-    }
     //Проверка если это авторский или моно букет
+    if (checkButton) {
+        flowersBuffer=FilterButton(flowersBuffer);
 
-    flowersList = flowersBuffer;
+    }
+    //Чек категорий
+    flowersBuffer = FilterCategory(flowersBuffer, FindCategory);
+    if(checkPrice)
+    {
+        flowersBuffer=FilterPrice(flowersBuffer);
+    }
+
+    flowersList=flowersBuffer;
     updateFlowersList(flowersDivCatalog, flowersList);
 
 }
@@ -120,6 +152,9 @@ function Reset()
     flowersList=startFlowerList;
     listPrices[0].value = "";
     listPrices[1].value = "";
-    arFilterCategory = [];
+
+    $("#DivSelect>button").removeClass("activeChip");
+    $("#DivSelect>button")[0].addClass("activeChip");
+
     updateFlowersList(flowersDivCatalog,flowersList);
 }
