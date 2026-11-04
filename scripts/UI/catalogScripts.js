@@ -15,7 +15,6 @@ var select = globalFilter.value;
 globalFilter.addEventListener("change",function()
 {
     select = globalFilter.value;
-    console.log("select",select);
     Sort(select);
 });
 
@@ -51,7 +50,6 @@ fillFlowersList(flowersDivCatalog);
 
 Sort(select);
 function Sort(sortCheck) {
-    console.log("sortCheck", sortCheck);
 
     if (Number(sortCheck) > 0) {
          flowersList.sort((fl1, fl2) =>Number(fl2.Price) - Number(fl1.Price));
@@ -96,22 +94,13 @@ function FilterButton(array) {
     let flowersBuffer = array;
     switch (Number(selectButton.value)) {
         default:
-            console.log("Default", selectButton.value);
             flowersBuffer = array;
             break;
         case 1:
-            console.log("----");
-            console.log("case 1", selectButton.value);
             flowersBuffer = array.filter(fl => Number(fl.Type) == 0);
-            console.log("case 1 // array", array);
-            console.log("case 1 // flowersBuffer", flowersBuffer);
             break;
         case 2:
-            console.log("----");
-            console.log("case 2", selectButton.value);
             flowersBuffer = array.filter(fl => Number(fl.Type) == 1);
-            console.log("case 1 // array", array);
-            console.log("case 1 // flowersBuffer", flowersBuffer);
             break;
     }
     return flowersBuffer;
@@ -144,7 +133,6 @@ function Filter(obj) {
 }
 function Reset()
 {
-    console.log("Сработал Reset");
     for(let i=0;i<listChecked.length;i++)
     {
         listChecked[i].checked=false;
@@ -154,7 +142,7 @@ function Reset()
     listPrices[1].value = "";
 
     $("#DivSelect>button").removeClass("activeChip");
-    $("#DivSelect>button")[0].addClass("activeChip");
+    $("#DivSelect > button[value='0']").addClass("activeChip");
 
     updateFlowersList(flowersDivCatalog,flowersList);
 }
