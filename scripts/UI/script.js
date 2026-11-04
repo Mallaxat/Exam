@@ -2,6 +2,11 @@
 //Тут уже массив объектов, с ними уже можно работать
 import flowersList from '../../data/flowers.json' with { type: 'json' };
 
+function GetFlowers()
+{
+    return flowersList;
+}
+
 
 //Функция, для заполнения массива цветов из json файла
 function fillFlowersList(flowers) {
@@ -29,7 +34,6 @@ function fillFlowersList(flowers) {
         flowers.innerHTML += textHTML;
         textHTML = "";
     }
-    return flowersList;
 }
 
 //Функция, для обновления массива цветов из json файла
@@ -63,31 +67,5 @@ function updateFlowersList(element,array) {
     return flowersList;
 }
 
-//Функция, которая будет фильтровать цветы по категории и возвращать массив объектов
-function filterFlowersByCategory(categories) 
-{
-    let array=[];
-    for(let i=0; i<categories.length; i++)
-    {
-        //Берем список категорий, смотрим есть ли совпадение в этом цветке
-        //если категория цветка содержит категорию списка - оставляем в массиве
-        array=flowersList.filter(flower=>categories.some(category=>flower.Category.includes(category)));
-    }
-    return array;
-}
-function filterFlowersByPrice(price) 
-{
-    let array=[];
-    if(price.length>0)
-    {
-        console.log("price[0]",price[0]);
-        console.log("price[1]",price[1]);
-        //Если не нужно ограничение по верху
-        if(price[1]==0) price[1] = Infinity;
-        array=flowersList.filter(flower=>flower.Price>price[0]&&flower.Price<=price[1])
-    }
-    return array;
-}
 
-
-export {fillFlowersList, filterFlowersByCategory,updateFlowersList,filterFlowersByPrice};
+export {fillFlowersList, GetFlowers,updateFlowersList,};
