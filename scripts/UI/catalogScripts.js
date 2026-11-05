@@ -149,7 +149,7 @@ function Reset()
     updateFlowersList(flowersDivCatalog,flowersList);
 }
 
-var cartButton=$("button.addOrder").on("click",AddOrder);
+$("button.addOrder").on("click",AddOrder);
 var flowerOrder=[];
 window.addEventListener("pagehide", function() {
     console.log("pagehide");

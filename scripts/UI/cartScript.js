@@ -40,7 +40,7 @@ $("input[name='phone']").mask("+7(000)000-00-00");
 //Корзина элементы
 var divList=document.getElementById("OrderList");
 //Фактические элементы, которые надо добавить в корзину
-var order= JSON.parse(localStorage.getItem("flowerOrder"));
+var order= JSON.parse(localStorage.getItem("flowerOrder"))|| [];;
 //console.log("order",order);
 
 //Стартовое заполнение отображения
@@ -92,8 +92,6 @@ function UpdateTextOrder()
     for(let i=0;i<order.length;i++) 
         {
             price+=order[i].Price;
-            //console.log(`[${i}]order `,order);
-            //console.log("price",price);
         }
     $("#resultPrice").text(price);   
 }
@@ -105,6 +103,7 @@ orderForm.addEventListener("submit", SendForm);
 function SendForm()
 {
     alert("Форма успешно отправлена");
+
     Reset();
 }
 
@@ -114,7 +113,6 @@ function Reset() {
 
     // Очищаем localStorage
     localStorage.setItem("flowerOrder", JSON.stringify(order));
-
     // Обновляем отображение корзины
     UpdateOrder();
     UpdateTextOrder();
