@@ -1581,3 +1581,24 @@ main  {
 #divTextOrder article > div:last-child {
   flex-shrink: 0;
 }
+
+/* Закреплённая ссылка на корзину в каталоге. */
+.floatingCart {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #263f35;
+  color: #fff;
+  box-shadow: 0 4px 16px #263f3533;
+}
+
+.floatingCart:hover {
+  background: #3c594a;
+  color: #fff;
+}

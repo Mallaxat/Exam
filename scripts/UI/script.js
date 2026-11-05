@@ -64,7 +64,6 @@ function updateFlowersList(element,array) {
         element.innerHTML += textHTML;
         textHTML = "";
     }
-    return flowersList;
 }
 
 function FillFlowersType(element) {
