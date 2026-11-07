@@ -16,12 +16,42 @@ class Client{
     Street;
     House;
     Apartment;
-    Items={};
+    Items = [];
 }
 
 const http = require("http");
 const fs=require("fs");
-var client=new Client();
+const { randomUUID } = require("node:crypto");
+const ordersPath = `${__dirname}/ReadyOrder.json`;
+let saveQueue = Promise.resolve();
+
+// Добавляет заказ в историю, сохраняя ранее записанные заказы.
+async function appendOrder(client) {
+    let contents = "";
+    try {
+        contents = await fs.promises.readFile(ordersPath, "utf8");
+    } catch (error) {
+        if (error.code !== "ENOENT") throw error;
+    }
+
+    const saved = contents.trim() ? JSON.parse(contents.trim()) : [];
+    if (!saved || typeof saved !== "object") {
+        throw new Error("Неверный формат файла заказов");
+    }
+
+    const orders = Array.isArray(saved) ? saved : [saved];
+    orders.push(client);
+
+    // Заменяем файл только после успешной записи полного списка.
+    const tempPath = `${ordersPath}.${randomUUID()}.tmp`;
+    try {
+        await fs.promises.writeFile(tempPath, JSON.stringify(orders, null, 2) + "\n", "utf8");
+        await fs.promises.rename(tempPath, ordersPath);
+    } catch (error) {
+        await fs.promises.unlink(tempPath).catch(() => {});
+        throw error;
+    }
+}
 
 http.createServer(async function (request, response) {
 
@@ -35,6 +65,7 @@ http.createServer(async function (request, response) {
     console.log("Получен запрос:", request.url);
 
     if (request.method === "POST" && request.url === "/order") {
+        const client = new Client();
         
         console.log("Запрос найден!");
         let body="";
@@ -72,7 +103,7 @@ http.createServer(async function (request, response) {
                     break;
                 case "items":
                     try {
-                        client.items = JSON.parse(paramValue);
+                        client.Items = JSON.parse(paramValue);
                     } catch {
                         response.statusCode = 400;
                         response.end("Неверный формат товаров");
@@ -83,7 +114,10 @@ http.createServer(async function (request, response) {
             }
         }
         try {
-            await fs.promises.writeFile(`${__dirname}/ReadyOrder.json`, JSON.stringify(client));
+            // Записываем заказы по очереди, чтобы одновременные запросы не потеряли записи.
+            const pendingSave = saveQueue.then(() => appendOrder(client));
+            saveQueue = pendingSave.catch(() => {});
+            await pendingSave;
         } catch (error) {
             console.error(error);
             response.statusCode = 500;
