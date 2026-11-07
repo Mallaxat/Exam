@@ -100,12 +100,7 @@ function UpdateTextOrder()
 var orderForm = document.getElementById("orderForm");
 orderForm.addEventListener("submit", SendForm);
 
-function SendForm()
-{
-    alert("Форма успешно отправлена");
 
-    Reset();
-}
 
 function Reset() {
     // Очищаем массив заказов
@@ -116,4 +111,39 @@ function Reset() {
     // Обновляем отображение корзины
     UpdateOrder();
     UpdateTextOrder();
+}
+
+var xht=new XMLHttpRequest();
+
+function SendForm(event) {
+    event.preventDefault();
+    console.log("---SendForm---");
+    //Запрос готовим 
+    xht.open("POST", "http://127.0.0.1:3000/order", true);
+    //что делать когда придет запрос
+    xht.onload = function () {
+        //Делаем проверку, если запись успешна - обновляем
+        if (xht.status === 200) {
+        //чтобы очищался только после успех
+            Reset();
+        } else {
+            console.error("Заказ не сохранён:", xht.responseText);
+        }
+
+    }
+    const items = [];
+    for (let i = 0; i < order.length; i++) {
+        const flower = order[i];
+        const item = items.find(item => item.flowerId === flower.Id);
+
+        if (item) item.quantity++;
+        else items.push({ flowerId: flower.Id, quantity: 1 });
+
+    }
+    const formData = new FormData(orderForm);
+    //Добавляем к форме заказы
+    formData.append("items", JSON.stringify(items))
+
+    //Отправляем просьбу записать заказы
+    xht.send(formData);
 }
