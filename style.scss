@@ -587,18 +587,6 @@ input[type="checkbox"]  {
   border-radius: 20px;
 }
 
-.favoriteButton  {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  border-radius: 50%;
-  background: #fffdf3;
-  width: 30px;
-  height: 30px;
-  font-size: 22px;
-  line-height: 1;
-}
-
 .productInfo  {
   padding: 16px;
 }
@@ -1121,12 +1109,6 @@ footer  {
     top: 8px;
     padding: 4px 6px;
   }
-  .favoriteButton  {
-    width: 26px;
-    height: 26px;
-    right: 6px;
-    top: 34px;
-  }
   .productBottom strong  {
     font-size: 17px;
   }
@@ -1366,13 +1348,6 @@ main  {
 
 .detailActions .primaryButton  {
   margin: 0;
-}
-
-.detailActions .favoriteButton  {
-  position: static;
-  width: 48px;
-  height: 48px;
-  border: 1px solid $line;
 }
 
 .detailInfo > .textLink  {

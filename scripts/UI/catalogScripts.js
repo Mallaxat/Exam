@@ -50,6 +50,11 @@ $("#DivSelect>button").on("click", function () {
 fillFlowersList(flowersDivCatalog);
 Sort(select);
 
+const bouquetType = new URLSearchParams(window.location.search).get("type");
+if (bouquetType === "1" || bouquetType === "2") {
+    $(`#DivSelect > button[value="${bouquetType}"]`).trigger("click");
+}
+
 
 function Sort(sortCheck) {
 
