@@ -124,6 +124,7 @@ var xht=new XMLHttpRequest();
 
 function SendForm(event) {
     event.preventDefault();
+    if (orderForm.elements.phone.value.length !== "+7(000)000-00-00".length) return;
     console.log("---SendForm---");
     //Запрос готовим 
     xht.open("POST", "http://127.0.0.1:3002/order", true);
