@@ -167,3 +167,24 @@ function AddOrder(event) {
     flowerOrder.push(flowersList.find(fl => Number(fl.Id) == Number(button.dataset.id)));
 }
 
+
+
+//Для анимации
+const floatingCart = document.querySelector(".floatingCart");
+let cartAnimation;
+
+function animateCart(scale) {
+    const currentTransform = getComputedStyle(floatingCart).transform;
+    cartAnimation?.cancel();
+
+    cartAnimation = floatingCart.animate(
+        [
+            { transform: currentTransform },
+            { transform: `scale(${scale})` }
+        ],
+        { duration: 160, easing: "ease-out", fill: "forwards" }
+    );
+}
+
+floatingCart.addEventListener("mouseenter", () => animateCart(1.12));
+floatingCart.addEventListener("mouseleave", () => animateCart(1));
