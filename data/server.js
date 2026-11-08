@@ -134,4 +134,4 @@ http.createServer(async function (request, response) {
     response.statusCode = 404;
     response.end("Адрес не найден");
 
-}).listen(3000, () => { console.log("Сервер запущен на порту 3000"); });
+}).listen(3002, "127.0.0.1", () => { console.log("Сервер запущен на порту 3002"); });

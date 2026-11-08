@@ -119,7 +119,7 @@ function SendForm(event) {
     event.preventDefault();
     console.log("---SendForm---");
     //Запрос готовим 
-    xht.open("POST", "http://127.0.0.1:3000/order", true);
+    xht.open("POST", "http://127.0.0.1:3002/order", true);
     //что делать когда придет запрос
     xht.onload = function () {
         //Делаем проверку, если запись успешна - обновляем
