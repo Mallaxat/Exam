@@ -1,3 +1,7 @@
 node_modules/
 .env
 ReadyOrder.json
+flowers.json
+flowersType.json
+addresses.json
+cart.json
