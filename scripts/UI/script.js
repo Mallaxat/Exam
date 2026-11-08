@@ -104,7 +104,7 @@ function FillFlowersAdd(element, array) {
                 </div>
                 <div>
                     <strong>${flowers[i].Price} ₽</strong>
-                    <button class="resetButton" type="button" onclick="Delete()">Удалить</button>
+                    <button class="resetButton" type="button" data-id="remove">Удалить</button>
                 </div>
             </article>`;
     }

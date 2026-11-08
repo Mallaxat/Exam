@@ -49,6 +49,12 @@ FillFlowersAdd(divList,order);
 //событие навесить на кнопки
 $(divList).on("click", "button[data-id='minus']", MinusNumber);
 $(divList).on("click", "button[data-id='plus']", PlusNumber);
+$(divList).on("click", "button[data-id='remove']", function () {
+    const idFlower = this.closest(".cartItem").dataset.id;
+    order = order.filter(flower => String(flower.Id) !== idFlower);
+    UpdateOrder();
+    UpdateTextOrder();
+});
 
 function PlusNumber(event) {
     let button = event.target;
@@ -84,6 +90,7 @@ var divTextOrder=document.getElementById("divTextOrder");
 console.log("divTextOrder",divTextOrder)
 //поля заказа
 UpdateTextOrder();
+
 function UpdateTextOrder()
 {
     console.log("---UpdateTextOrder---");
